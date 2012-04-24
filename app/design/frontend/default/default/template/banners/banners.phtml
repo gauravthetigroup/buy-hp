@@ -1,0 +1,56 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category   design_default
+ * @package    Mage
+ * @copyright  Copyright (c) 2008 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
+ * @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<div class = "banner_frontend">
+<table width="100%" border="0" align="left" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center" valign="middle">
+		<div class="banner_dis" style="clear: both; text-align: left;">
+            <div style="background-image: url(&quot;uploads/slideshow/by-malene-birger-new-01.jpg&quot;); width: 1000px; height: 345px; position: relative; background-position: left top;" id="ft">
+              <?php foreach($this->getBannersCollection() as $banners) : ?>
+              <img style="display: none;" src="<?php echo Mage::getBaseUrl('media'); ?>Banners/images/<?php echo $banners['bannerimage'];?>" alt="<?php echo $banners['title'];?>" width="1000" height="345">
+			   <a href="<?php echo $banners['link'];?>" class="ft-ft" id="ft-ft1" style="width: 58px; height: 413px; float: left; position: absolute; outline: medium none; background-position: 0px top; left: 0px; opacity: 1; display: block;" ></a>
+             <?php  endforeach; ?>
+            </div>
+       <script>
+	jQuery('#ft').jqFancyTransitions({ 
+		 effect: 'wave', 
+		'width': 1000, 
+		'height': 345, 
+		'navigation': false, 
+		'strips': 20, 
+		'links': true, 
+		'pagenumbers': false,
+		'pauseonmouseover': true,	
+		'delay': 3000, // delay between images in ms
+		'stripDelay': 50 // delay beetwen strips in ms
+	});
+              </script>
+		</div>
+     </td>
+  </tr>
+</table>
+</div>

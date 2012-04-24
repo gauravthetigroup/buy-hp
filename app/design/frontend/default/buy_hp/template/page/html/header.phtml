@@ -1,0 +1,82 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+/**
+ * @var Mage_Page_Block_Html_Header $this
+ */
+?>
+
+<div id="header">
+  <div class="header_top">
+    <div class="logo"> <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a> </div>
+    <div class="header_login">
+      <div class="header_block">
+        <div class="login_message">info@buy-hp.com</div>
+        <div class="login_nav"> <?php echo $this->getChildHtml('topLinks') ?> </div>
+      </div>
+      <div class="header_number">0845 685 0890</div>
+      <div class="shoping_chackout"><?php echo $this->getChildHtml('topcart'); ?>
+	   
+	  <?php if($_cartQty && $this->isPossibleOnepageCheckout()): ?>
+    <div class="actions">
+        <?php echo $this->getChildHtml('extra_actions') ?>
+        <button type="button" title="<?php echo $this->__('Checkout') ?>" class="button" onclick="setLocation('<?php echo $this->getCheckoutUrl() ?>')"><span><span><?php echo $this->__('Checkout') ?></span></span></button>
+    </div>
+    <?php endif ?>
+    <?php $_items = $this->getRecentItems() ?>
+    <?php /*if(count($_items)): ?>
+        <p class="block-subtitle"><?php echo $this->__('Recently added item(s)') ?></p>
+        <ol id="cart-sidebar" class="mini-products-list">
+        <?php foreach($_items as $_item): ?>
+            <?php echo $this->getItemHtml($_item) ?>
+        <?php endforeach; ?>
+        </ol>
+        <script type="text/javascript">decorateList('cart-sidebar', 'none-recursive')</script>
+    <?php else: ?>
+        <p class="empty"><?php echo $this->__('You have no items in your shopping cart.') ?></p>
+    <?php endif */ ?>
+	
+	          <!--<div class="shoping_basket"><img src="<?php echo $this->getSkinUrl('images/basket.png'); ?>" alt="" /></div>
+        <div class="shoping_matter"><strong>Shopping Basket</strong><br />
+          1 item <span>£223.00</span> <br />
+          <a href="#">View Basket</a></div>
+        <div class="shoping_button"><a href="#"><img src="images/checkout_button.png" alt="" /></a></div>
+      </div>-->
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <!-- Navigation or Search Content -->
+  <div class="header_mid">
+    <div class="HeaderMenuBlog">
+      <!-- Navigation Block		-->
+      <?php echo $this->getChildHtml('topMenu') ?>
+      <!-- Search Blcok -->
+      <div class="SearchBlog"><?php echo $this->getChildHtml('topSearch') ?></div>
+    </div>
+  </div>
+  <!-- End of Navigation or Search Content -->
+  <div class="clear"></div>
+</div>

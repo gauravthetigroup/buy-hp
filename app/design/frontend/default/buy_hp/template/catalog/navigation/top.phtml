@@ -1,0 +1,90 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Top menu for store
+ *
+ * @see Mage_Catalog_Block_Navigation
+ */
+?>
+<?php
+/**
+ * $this->renderCategoriesMenuHtml() supports optional arguments:
+ * int Level number for list item class to start from
+ * string Extra class of outermost list items
+ * string If specified wraps children list in div with this class
+ */
+?>
+<?php
+
+function  get_categories($categories) {
+	$array= '<ul>';
+	foreach($categories as $category) {
+		$cat = Mage::getModel('catalog/category')->load($category->getId());
+		$count = $cat->getProductCount();
+		$array .= '<li>'.
+		'<a href="' . Mage::getUrl($cat->getUrlPath()). '">' .
+		$category->getName() . "(".$count.")</a>\n";
+		if($category->hasChildren()) {
+			$children = Mage::getModel('catalog/category')->getCategories($category->getId());
+			 $array .=  get_categories($children);
+			}
+		 $array .= '</li>';
+	}
+	return  $array . '</ul>';
+} ?>
+
+<div id="MenuBlog">
+  <div class="Menu"> <?php echo $this->getChildHtml('topContainer'); ?>
+    <?php //echo $this->getChildHtml('topMenu'); ?>
+    <ul>
+      <li><a href="<?php echo $this->getUrl() ?>">Home</a></li>
+      <li><a href="<?php echo Mage::getModel("catalog/category")->load(46)->getUrl() ?>">Desktops</a>
+        <?php $rootcatId = 46 ;	$categories = Mage::getModel('catalog/category')->getCategories($rootcatId); echo  get_categories($categories); ?>
+      </li>
+      <li><a href="<?php echo Mage::getModel("catalog/category")->load(102)->getUrl() ?>">Workstations</a>
+        <?php $rootcatId = 102 ; $categories1 = Mage::getModel('catalog/category')->getCategories($rootcatId); echo get_categories($categories); ?>
+      </li>
+      <li><a href="<?php echo Mage::getModel("catalog/category")->load(3)->getUrl() ?>">Laptops</a>
+        <?php $rootcatId = 3 ; $categories = Mage::getModel('catalog/category')->getCategories($rootcatId); echo get_categories($categories); ?>
+      </li>
+      <li><a href="<?php echo Mage::getModel("catalog/category")->load(47)->getUrl() ?>">Servers</a>
+        <?php $rootcatId = 47 ; $categories = Mage::getModel('catalog/category')->getCategories($rootcatId); echo get_categories($categories); ?>
+      </li>
+      <li><a href="<?php echo Mage::getModel("catalog/category")->load(74)->getUrl() ?>">Networking</a>
+        <?php $rootcatId = 74 ; $categories = Mage::getModel('catalog/category')->getCategories($rootcatId); echo get_categories($categories); ?>
+      </li>
+      <li><a href="<?php echo Mage::getModel("catalog/category")->load(6)->getUrl() ?>">Printer Supplies</a>
+        <?php $rootcatId = 6 ; $categories = Mage::getModel('catalog/category')->getCategories($rootcatId); echo get_categories($categories); ?>
+      </li>
+      <li><a href="<?php echo $this->getUrl('components.html') ?>">Components</a>
+        <?php $rootcatId = 15 ; $categories = Mage::getModel('catalog/category')->getCategories($rootcatId); echo get_categories($categories); ?>
+      </li>
+    </ul>
+    <!-- -->
+  </div>
+</div>
