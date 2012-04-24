@@ -1824,7 +1824,7 @@ tr.summary-details-excluded { font-style:italic; }
 /*		Footer Content Add on 		======================*/
 
 #footer{ clear:both; margin:0 auto; text-align:center; padding:0px; background:#CDCDCD; width:100%;}
-#footer .footer_content{ margin:0 auto; text-align:center; padding:35px 20px 5px; width:960px; background:#CDCDCD; height:220px;}
+#footer .footer_content{ margin:0 auto; text-align:center; padding:35px 20px 5px; width:960px; background:#CDCDCD; height:250px;}
 #footer .footer_content .footer_block{ float:left; text-align:left; width:450px;}
 #footer .footer_content .footer_block h2{ font-family:Arial, Helvetica, sans-serif; font-size:27px; padding-bottom:15px; font-weight:bold;}
 #footer .footer_content .footer_block ul{ float:left; text-align:left; width:220px;}
@@ -1837,13 +1837,25 @@ tr.summary-details-excluded { font-style:italic; }
     font-size: 11px;
     font-style: normal;
     line-height: 30px;
-    padding-left: 13px;
+    padding-left: 0px;
     padding-top: 39px;
     text-shadow: 1px 1px 1px #DDDDDD;
-    width: 820px;}
-#footer .footer_content .footer_copyright a{color:#1E1E1E; text-align:left; text-decoration:none;}
+	text-align:left;
+    /*width: 700px;*/}
+#footer .footer_content .footer_copyright a{color: #1E1E1E;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 11px;
+    font-style: normal;
+    padding: 0 8px;
+    text-decoration: none;
+    text-shadow: 1px 1px 1px #DDDDDD; text-align:left;}
 #footer .footer_content .footer_copyright a:hover{color:#1E1E1E; text-align:left; text-decoration:underline;}
-
+#footer .footer_content .footer_copyright .SocialMadiaBlog {
+    float: right;
+    margin-bottom: 0px 0px -20px 0px;
+    text-align: right;
+	padding-left:100px;
+}
 
 
 

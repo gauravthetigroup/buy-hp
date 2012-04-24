@@ -31,7 +31,7 @@
  */
 
 ?>
-<?php if ($this->getIsNeedToDisplaySideBar()):?>
+<?php /* if ($this->getIsNeedToDisplaySideBar()):?>
 <div class="block block-cart">
     <?php $_cartQty = $this->getSummaryCount() ?>
     <div class="block-title">
@@ -77,4 +77,46 @@
     <?php endif ?>
     </div>
 </div>
-<?php endif;?>
+<?php endif; */ ?>
+
+
+
+<?php if ($this->getIsNeedToDisplaySideBar()):?>
+	
+		<?php $_cartQty = $this->getSummaryCount() ?>
+        	 
+             		<div class="ShoopingIcon">
+                    	<?php if ($_cartQty>0): ?>
+							<?php if ($_cartQty==1): ?>
+                                <?php echo $this->__('There is <a href="%s">1 item</a> in your cart.<br /> <a href="%s" class="view_link">View Basket</a> <br />', $this->getUrl('checkout/cart'), $this->getUrl('checkout/cart')) ?>
+                            <?php else: ?>
+                                <?php echo $this->__('There are <a href="%s">%s items</a> in your cart.<br /> <a href="%s" class="view_link">View Basket</a> <br />', $this->getUrl('checkout/cart'), $_cartQty, $this->getUrl('checkout/cart')) ?>
+                            <?php endif ?>
+                        <?php else: ?>
+                            <?php echo $this->__('You have no items in your shopping cart.<br /> <a href="%s" class="view_link">View Basket</a> <br />', $this->getUrl('checkout/cart')) ?>
+                        <?php endif ?>
+                     </div>
+                     
+                     <div class="Checkout">
+                     	<div class="CheckoutDolor">
+                        	<?php if ($_cartQty>0): ?>
+								<?php if ($this->canApplyMsrp()): ?>
+                                    <?php echo $this->__('ORDER TOTAL WILL BE DISPLAYED BEFORE YOU SUBMIT THE ORDER'); ?>
+                                <?php else: ?>
+                                    <?php echo Mage::helper('checkout')->formatPrice($this->getSubtotal()) ?>
+                                    <?php if ($_subtotalInclTax = $this->getSubtotalInclTax()): ?>
+                                        <br />(<?php echo Mage::helper('checkout')->formatPrice($_subtotalInclTax) ?> <?php echo Mage::helper('tax')->getIncExcText(true) ?>)
+                                    <?php endif; ?>
+                                <?php endif; ?>
+                            <?php endif ?>
+                        </div>
+                        
+                        <?php if($_cartQty && $this->isPossibleOnepageCheckout()): ?>
+                            <div class="FloatLeft">
+                                <?php echo $this->getChildHtml('extra_actions') ?>
+                                <input type="image" src="<?php echo $this->getSkinUrl('images/checkout.png'); ?>" class="button" onclick="setLocation('<?php echo $this->getCheckoutUrl() ?>')" />
+                            </div>
+                        <?php endif ?>
+                     </div>
+    		 <?php endif ?>
+
